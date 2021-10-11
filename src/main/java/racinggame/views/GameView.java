@@ -4,6 +4,7 @@ import racinggame.controllers.GameController;
 import racinggame.domains.Car;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameView {
 
@@ -34,7 +35,7 @@ public class GameView {
 
     private void printCarPosition() {
         for (Car car : carList) {
-            StringBuilder outputStr = new StringBuilder(car.getName() + ":");
+            StringBuilder outputStr = new StringBuilder(car.getName() + " : ");
             for (int i = 0; i < car.getPosition(); i++) {
                 outputStr.append("-");
             }
@@ -44,7 +45,10 @@ public class GameView {
     }
 
     private void printWinners() {
-
+        int maxMovement = gameController.findMaxMove(carList);
+        String outputStr = "최종 우승자는 " + carList.stream().filter(car -> car.getPosition() == maxMovement).map(Car::getName).collect(Collectors.joining(",")) +
+                " 입니다.";
+        System.out.println(outputStr);
     }
 
     private void generateCarList() {

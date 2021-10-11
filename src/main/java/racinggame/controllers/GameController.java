@@ -23,4 +23,8 @@ public class GameController {
     public List<Car> moveCars(List<Car> carList) {
         return gameService.moveCars(carList);
     }
+
+    public int findMaxMove(List<Car> carList) {
+        return gameService.findMaxMove(carList);
+    }
 }

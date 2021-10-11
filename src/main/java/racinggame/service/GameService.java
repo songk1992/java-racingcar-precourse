@@ -72,4 +72,9 @@ public class GameService {
         return (Randoms.pickNumberInRange(0, 9) > 3) ? 1 : 0;
     }
 
+    public int findMaxMove(List<Car> carList) {
+        int retVal = 0;
+        for (Car car : carList) retVal = Math.max(retVal, car.getPosition());
+        return retVal;
+    }
 }
