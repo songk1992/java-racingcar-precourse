@@ -17,10 +17,8 @@ class GameServiceTest {
     private GameService gameService;
 
 
-
-
     @BeforeEach
-    void setUp(){
+    void setUp() {
         gameService = new GameService();
 
         com = new ArrayList<>();
@@ -38,7 +36,7 @@ class GameServiceTest {
 
     @Test
     @DisplayName("레이싱 게임 입력 테스트 스트링 , 분할 테스트")
-    void nameInputStringEqualityTest(){
+    void nameInputStringEqualityTest() {
         List<Car> carList = gameService.makeCarList("pobi,crong,honux");
         assertThat(carList.get(0).getName()).isEqualTo(com.get(0).getName());
         assertThat(carList.get(1).getName()).isEqualTo(com.get(1).getName());
@@ -47,14 +45,14 @@ class GameServiceTest {
 
     @Test
     @DisplayName("레이싱 게임 입력 테스트 스트링 , 이름_숫자_테스트")
-    void nameInputStringCountTest(){
+    void nameInputStringCountTest() {
         List<Car> carList = gameService.makeCarList("pobi,crong,honux");
         assertThat(carList.size()).isEqualTo(com.size());
     }
 
     @Test
     @DisplayName("레이싱 게임 입력 테스트 스트링 , 이름_길이_테스트")
-    void nameInputStringLengthTest(){
+    void nameInputStringLengthTest() {
         Car car4 = new Car();
         car4.setName("honux123");
         com.add(car4);
@@ -66,7 +64,7 @@ class GameServiceTest {
 
     @Test
     @DisplayName("레이싱 게임 입력 테스트 숫자 , 숫자_입력_테스트")
-    void tryNumInputTest(){
+    void tryNumInputTest() {
         assertThat(gameService.makeTryNum("1")).isEqualTo(1);
         assertThat(gameService.makeTryNum("-1")).isEqualTo(-1);
         assertThat(gameService.makeTryNum("숫자가아닌스트링")).isEqualTo(-1);
@@ -76,16 +74,13 @@ class GameServiceTest {
 
     @Test
     @DisplayName("레이싱 차움직임 리스트 정상리턴 테스트")
-    void moveCars(){
+    void moveCars() {
         List<Car> tempCom = gameService.moveCars(com);
-        for(int i=0;i<com.size();i++){
+        for (int i = 0; i < com.size(); i++) {
             assertThat(com.get(i).getName()).isEqualTo(tempCom.get(i).getName());
             assertThat(tempCom.get(i).getName()).isGreaterThanOrEqualTo(com.get(i).getName());
         }
     }
-
-
-
 
 
 }

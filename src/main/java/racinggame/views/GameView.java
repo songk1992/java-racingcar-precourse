@@ -26,17 +26,16 @@ public class GameView {
 
     private void processResult() {
         System.out.println("실행결과");
-        for(int i=0;i<tryNum;i++)
-        {
+        for (int i = 0; i < tryNum; i++) {
             carList = gameController.moveCars(carList);
             printCarPosition();
         }
     }
 
-    private void printCarPosition(){
-        for(Car car : carList){
+    private void printCarPosition() {
+        for (Car car : carList) {
             StringBuilder outputStr = new StringBuilder(car.getName() + ":");
-            for(int i=0;i< car.getPosition();i++){
+            for (int i = 0; i < car.getPosition(); i++) {
                 outputStr.append("-");
             }
             System.out.println(outputStr);
@@ -44,14 +43,14 @@ public class GameView {
         System.out.println();
     }
 
-    private void printWinners(){
+    private void printWinners() {
 
     }
 
     private void generateCarList() {
         System.out.println("경주할자동차이름을입력하세요.(이름은쉼표(,)기준으로구분)");
         carList = gameController.generateCarList();
-        if(carList == null){
+        if (carList == null) {
             System.out.println("[ERROR]");
             generateCarList();
         }
@@ -60,7 +59,7 @@ public class GameView {
     private void generateTryNum() {
         System.out.println("시도할회수는몇회인가요?");
         tryNum = gameController.generateTryNum();
-        if(tryNum == -1){
+        if (tryNum == -1) {
             System.out.println("[ERROR]");
             generateTryNum();
         }

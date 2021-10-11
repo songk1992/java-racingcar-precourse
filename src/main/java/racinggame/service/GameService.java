@@ -31,8 +31,8 @@ public class GameService {
     public boolean ListIsValid(List<Car> carList) {
         boolean retBool = true;
 
-        for(Car car : carList){
-            if(car.getName().length() > 5){
+        for (Car car : carList) {
+            if (car.getName().length() > 5) {
                 retBool = false;
                 break;
             }
@@ -40,18 +40,18 @@ public class GameService {
         return retBool;
     }
 
-    public int generateTryNum(){
+    public int generateTryNum() {
         return makeTryNum(Console.readLine());
     }
 
-    public int makeTryNum(String inputStr){
+    public int makeTryNum(String inputStr) {
         int tryNum;
-        try{
+        try {
             tryNum = Integer.parseInt(inputStr);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             tryNum = -1;
         }
-        if(tryNum < 0){
+        if (tryNum < 0) {
             tryNum = -1;
         }
         return tryNum;
@@ -59,17 +59,17 @@ public class GameService {
 
 
     public List<Car> moveCars(List<Car> carList) {
-        for(int i=0;i<carList.size();i++) {
+        for (int i = 0; i < carList.size(); i++) {
             Car car = carList.get(i);
             int curPosition = car.getPosition() + addMovement();
             car.setPosition(curPosition);
             carList.set(i, car);
         }
         return carList;
-        }
+    }
 
     private int addMovement() {
-        return (Randoms.pickNumberInRange(0,9) > 3) ? 1 : 0;
+        return (Randoms.pickNumberInRange(0, 9) > 3) ? 1 : 0;
     }
 
 }

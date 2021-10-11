@@ -20,5 +20,7 @@ public class GameController {
         return gameService.generateTryNum();
     }
 
-    public List<Car> moveCars(List<Car> carList) {return gameService.moveCars(carList);}
+    public List<Car> moveCars(List<Car> carList) {
+        return gameService.moveCars(carList);
+    }
 }
