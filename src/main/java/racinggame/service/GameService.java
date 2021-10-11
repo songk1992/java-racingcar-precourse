@@ -1,6 +1,7 @@
 package racinggame.service;
 
 import nextstep.utils.Console;
+import nextstep.utils.Randoms;
 import racinggame.domains.Car;
 
 import java.util.ArrayList;
@@ -56,5 +57,19 @@ public class GameService {
         return tryNum;
     }
 
+
+    public List<Car> moveCars(List<Car> carList) {
+        for(int i=0;i<carList.size();i++) {
+            Car car = carList.get(i);
+            int curPosition = car.getPosition() + addMovement();
+            car.setPosition(curPosition);
+            carList.set(i, car);
+        }
+        return carList;
+        }
+
+    private int addMovement() {
+        return (Randoms.pickNumberInRange(0,9) > 3) ? 1 : 0;
+    }
 
 }

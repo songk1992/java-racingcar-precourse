@@ -13,17 +13,39 @@ public class GameView {
 
     public GameView() {
         this.gameController = new GameController();
+        this.carList = null;
+        this.tryNum = 0;
     }
 
     public void startGame() {
         generateCarList();
         generateTryNum();
         processResult();
+        printWinners();
     }
 
     private void processResult() {
         System.out.println("실행결과");
-        gameController.processResult();
+        for(int i=0;i<tryNum;i++)
+        {
+            carList = gameController.moveCars(carList);
+            printCarPosition();
+        }
+    }
+
+    private void printCarPosition(){
+        for(Car car : carList){
+            StringBuilder outputStr = new StringBuilder(car.getName() + ":");
+            for(int i=0;i< car.getPosition();i++){
+                outputStr.append("-");
+            }
+            System.out.println(outputStr);
+        }
+        System.out.println();
+    }
+
+    private void printWinners(){
+
     }
 
     private void generateCarList() {

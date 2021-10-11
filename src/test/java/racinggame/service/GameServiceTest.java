@@ -73,4 +73,19 @@ class GameServiceTest {
         assertThat(gameService.makeTryNum("2147483647")).isEqualTo(2147483647);
         assertThat(gameService.makeTryNum("2147483648")).isEqualTo(-1);
     }
+
+    @Test
+    @DisplayName("레이싱 차움직임 리스트 정상리턴 테스트")
+    void moveCars(){
+        List<Car> tempCom = gameService.moveCars(com);
+        for(int i=0;i<com.size();i++){
+            assertThat(com.get(i).getName()).isEqualTo(tempCom.get(i).getName());
+            assertThat(tempCom.get(i).getName()).isGreaterThanOrEqualTo(com.get(i).getName());
+        }
+    }
+
+
+
+
+
 }
