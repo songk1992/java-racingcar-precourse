@@ -10,6 +10,11 @@ import java.util.List;
 public class GameService {
 
 
+    public static final int RAND_NUM_SEED_RANGE_START = 0;
+    public static final int RAND_NUM_SEED_RANGE_END = 9;
+    public static final int RANDOM_MODIFIER = 3;
+    public static final int MAX_NAME_LENGTH = 5;
+
     public List<Car> generateCarList() {
         List<Car> carList = makeCarList(Console.readLine());
         return ListIsValid(carList) ? carList : null;
@@ -18,26 +23,16 @@ public class GameService {
     public List<Car> makeCarList(String inputStr) {
         List<Car> carList = new ArrayList<>();
         String[] carNameArr = inputStr.split(",");
-
         for (String s : carNameArr) {
             Car car = new Car();
             car.setName(s);
             carList.add(car);
         }
-
         return carList;
     }
 
     public boolean ListIsValid(List<Car> carList) {
-        boolean retBool = true;
-
-        for (Car car : carList) {
-            if (car.getName().length() > 5) {
-                retBool = false;
-                break;
-            }
-        }
-        return retBool;
+        return carList.stream().noneMatch(car -> car.getName().length() > MAX_NAME_LENGTH);
     }
 
     public int generateTryNum() {
@@ -69,7 +64,7 @@ public class GameService {
     }
 
     private int addMovement() {
-        return (Randoms.pickNumberInRange(0, 9) > 3) ? 1 : 0;
+        return (Randoms.pickNumberInRange(RAND_NUM_SEED_RANGE_START, RAND_NUM_SEED_RANGE_END) > RANDOM_MODIFIER) ? 1 : 0;
     }
 
     public int findMaxMove(List<Car> carList) {

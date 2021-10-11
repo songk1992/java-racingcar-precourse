@@ -3,6 +3,7 @@ package racinggame.views;
 import racinggame.controllers.GameController;
 import racinggame.domains.Car;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,11 +22,11 @@ public class GameView {
     public void startGame() {
         generateCarList();
         generateTryNum();
-        processResult();
-        printWinners();
+        generateMidResults();
+        generateFinalResult();
     }
 
-    private void processResult() {
+    private void generateMidResults() {
         System.out.println("실행결과");
         for (int i = 0; i < tryNum; i++) {
             carList = gameController.moveCars(carList);
@@ -35,19 +36,21 @@ public class GameView {
 
     private void printCarPosition() {
         for (Car car : carList) {
-            StringBuilder outputStr = new StringBuilder(car.getName() + " : ");
-            for (int i = 0; i < car.getPosition(); i++) {
-                outputStr.append("-");
-            }
+            String outputStr = car.getName() + " : ";
+            outputStr += new String(new char[car.getPosition()]).replace("\0", "-");
             System.out.println(outputStr);
         }
         System.out.println();
     }
 
-    private void printWinners() {
+    private void generateFinalResult() {
         int maxMovement = gameController.findMaxMove(carList);
-        String outputStr = "최종 우승자는 " + carList.stream().filter(car -> car.getPosition() == maxMovement).map(Car::getName).collect(Collectors.joining(",")) +
-                " 입니다.";
+        String outputStr = "최종 우승자는 "
+                +carList.stream()
+                .filter(car -> car.getPosition() == maxMovement)
+                .map(Car::getName)
+                .collect(Collectors.joining(","))
+                + " 입니다.";
         System.out.println(outputStr);
     }
 

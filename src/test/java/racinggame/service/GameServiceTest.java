@@ -18,7 +18,7 @@ class GameServiceTest {
 
 
     @BeforeEach
-    void setUp() {
+    void setUpTest() {
         gameService = new GameService();
 
         com = new ArrayList<>();
@@ -36,7 +36,7 @@ class GameServiceTest {
 
     @Test
     @DisplayName("레이싱 게임 입력 테스트 스트링 , 분할 테스트")
-    void nameInputStringEqualityTest() {
+    void inputStringNameEqualityTest() {
         List<Car> carList = gameService.makeCarList("pobi,crong,honux");
         assertThat(carList.get(0).getName()).isEqualTo(com.get(0).getName());
         assertThat(carList.get(1).getName()).isEqualTo(com.get(1).getName());
@@ -45,14 +45,14 @@ class GameServiceTest {
 
     @Test
     @DisplayName("레이싱 게임 입력 테스트 스트링 , 이름_숫자_테스트")
-    void nameInputStringCountTest() {
+    void inputStringNameCountTest() {
         List<Car> carList = gameService.makeCarList("pobi,crong,honux");
         assertThat(carList.size()).isEqualTo(com.size());
     }
 
     @Test
     @DisplayName("레이싱 게임 입력 테스트 스트링 , 이름_길이_테스트")
-    void nameInputStringLengthTest() {
+    void inputStringNameLengthTest() {
         Car car4 = new Car();
         car4.setName("honux123");
         com.add(car4);
@@ -74,7 +74,7 @@ class GameServiceTest {
 
     @Test
     @DisplayName("레이싱 차움직임 리스트 정상리턴 테스트")
-    void moveCars() {
+    void moveCarsTest() {
         List<Car> tempCom = gameService.moveCars(com);
         for (int i = 0; i < com.size(); i++) {
             assertThat(com.get(i).getName()).isEqualTo(tempCom.get(i).getName());
