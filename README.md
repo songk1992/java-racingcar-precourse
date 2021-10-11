@@ -54,9 +54,9 @@
 
 테스트 기록
 
-<img align="center" src="img/screenshot01.png" alt="테스트 통과 스샷"/>
+<img align="center" src="./img/screenshot01.PNG" alt="테스트 통과 스샷"/>
 
-<img align="center" src="img/screenshot02.png" alt="테스트 통과 스샷"/>
+<img align="center" src="./img/screenshot02.PNG" alt="테스트 통과 스샷"/>
 
 ---
 
